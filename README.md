@@ -32,6 +32,10 @@ python main.py --dataset cifar10 --num_per_class 10 --batch_per_class 10 --num_t
 
 In the above script, we use batch size 5000, window size 60, unroll length 200, and the Adam optimizer with 0.001 learning rate in both the inner loop and the outer loop. 
 
+## To Do
+
+Replace the links to the dataset
+
 ## Citation
 
 If you find this useful for your research, please cite our paper:

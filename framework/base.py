@@ -517,19 +517,7 @@ def test(data_loaders, model, criterion, args):
                 acc[loader_i][train_time] += tmp_acc
             start_epoch = epoch_list[train_time]
         loss += tmp_loss
-        if args.data_sample:
-            if train_ind == 0: 
-                if args.soft_label:
-                    acc_ind = one_gpu_test(data_loaders[0], model, args)
-                else:
-                    acc_ind = one_gpu_test_2(data_loaders[0], model, args)
-            else:
-                if args.soft_label:
-                    acc_ind += one_gpu_test(data_loaders[0], model, args)
-                else:
-                    acc_ind += one_gpu_test_2(data_loaders[0], model, args)
-        else: 
-            acc_ind = None
+        acc_ind = None
     if args.soft_label:
         acc_ind = acc_ind / args.num_train_eval
     else:
