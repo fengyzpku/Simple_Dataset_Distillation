@@ -259,7 +259,7 @@ def main_worker(gpu, ngpus_per_node, args):
             tmp_index = test_acc[0].index(max(test_acc[0]))
                         
             if model.module.data.weight.get_device() == 0 and args.wandb:
-                wandb.log({"loss": test_loss, "epoch": int(epoch*args.update_steps/5), 'distill_steps':distill_steps, "grad_norm": grad_tmp[-1],
+                wandb.log({"loss": test_loss, "epoch": int(epoch), 'distill_steps':distill_steps, "grad_norm": grad_tmp[-1],
                         "train_acc": test_acc[1][-1], "test_acc":test_acc[0][-1], "curr": model.module.curriculum})
             
         # remember best acc@1 and save checkpoint
@@ -517,11 +517,11 @@ def test(data_loaders, model, criterion, args):
                 acc[loader_i][train_time] += tmp_acc
             start_epoch = epoch_list[train_time]
         loss += tmp_loss
-        acc_ind = None
-    if args.soft_label:
-        acc_ind = acc_ind / args.num_train_eval
-    else:
-        acc_ind = args.num_train_eval - acc_ind
+        if train_ind == 0:
+            acc_ind = one_gpu_test(data_loaders[0], model, args)
+        else:
+            acc_ind += one_gpu_test(data_loaders[0], model, args)
+    acc_ind = args.num_train_eval - acc_ind
         
     for loader_i in range(len(data_loaders)):
         acc[loader_i] = [acc_id/args.num_train_eval for acc_id in acc[loader_i]]
