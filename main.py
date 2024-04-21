@@ -29,7 +29,7 @@ if __name__ == '__main__':
     parser.add_argument('--gpu', default=None, type=int, help='GPU to use in non-distributed training')
 
     # Training configs
-    parser.add_argument('--root', default='/scratch/yf2231/dataset', type=str, help='Root directory for dataset')
+    parser.add_argument('--root', default='./dataset', type=str, help='Root directory for dataset')
     parser.add_argument('--dataset', default='mnist', type=str, help='Dataset to use')
     parser.add_argument('--arch', default='mnistnet', type=str, help='Architecture to use')
     parser.add_argument('--lr', default=0.01, type=float, help='learning rate for the distilled data')

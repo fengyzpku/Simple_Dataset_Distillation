@@ -109,7 +109,7 @@ def get_dataset(dataset, root, transform_train, transform_test, zca=False):
         if zca:
             print('Using ZCA')
             # preprocess the tiny-imagenet-200 with ZCA to save time.
-            db = h5py.File('/scratch/yf2231/dataset/tiny-imagenet-200/zca_pro.h5', 'r')
+            db = h5py.File('./dataset/tiny-imagenet-200/zca_pro.h5', 'r')
             train_data = torch.tensor(db['train'])
             test_data = torch.tensor(db['test'])
             train_label = torch.tensor(db['train_label'])
@@ -124,7 +124,7 @@ def get_dataset(dataset, root, transform_train, transform_test, zca=False):
         num_classes = 200
         if zca:
             print('Using ZCA')
-            db = h5py.File('/scratch/yf2231/dataset/CUB_200_2011/zca_new.h5', 'r')
+            db = h5py.File('./dataset/CUB_200_2011/zca_new.h5', 'r')
             train_data = torch.tensor(db['train'])
             test_data = torch.tensor(db['test'])
             train_label = torch.tensor(db['train_label'])

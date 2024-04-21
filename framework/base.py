@@ -72,7 +72,7 @@ def main_worker(gpu, ngpus_per_node, args):
     print("Dataset Path: %s"%args.root)
     print(args)
     
-    pathdir = '/home/fyz/Distributed_Distill/train_log/{}/{}_{}_Adam{}'.format(args.dataset, args.epochs, args.batch_size, int(args.lr*1000)) 
+    pathdir = './train_log/{}/{}_{}_Adam{}'.format(args.dataset, args.epochs, args.batch_size, int(args.lr*1000)) 
         
     # 0. Preprocess datasets
     print('==> Preparing data..')
@@ -220,9 +220,9 @@ def main_worker(gpu, ngpus_per_node, args):
                 settings=wandb.Settings(start_method="fork")) 
     
     if args.ddtype == 'standard':
-        fname = '/scratch/yf2231/Distributed_Distillation/grad_save_init_IPC_'+str(args.num_per_class)+'_no_curr_unroll_'+str(args.window)+args.fname+'.h5'
+        fname = './grad_save_init_IPC_'+str(args.num_per_class)+'_no_curr_unroll_'+str(args.window)+args.fname+'.h5'
     else:
-        fname = '/scratch/yf2231/Distributed_Distillation/save/{}/IPC_{}_{}_curr_unroll_{}_{}_{}_{}.h5'.format(str(args.dataset), str(args.num_per_class),
+        fname = './save/{}/IPC_{}_{}_curr_unroll_{}_{}_{}_{}.h5'.format(str(args.dataset), str(args.num_per_class),
                                                                                                                str(args.cctype), str(args.window), 
                                                                                                        str(args.totwindow), str(args.minwindow), args.fname)
     
